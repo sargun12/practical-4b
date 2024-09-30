@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #7: Simple playlist</title>
+    <link rel="stylesheet" href="exercise7.css">
+    <script>
+        window.onload = function() {
+    const addButton = document.getElementById('addButton');
+    const songTextInput = document.getElementById('songTextInput');
+    const playlist = document.getElementById('playlist');
+
+    addButton.addEventListener('click', function() {
+        const songName = songTextInput.value.trim();
+
+        if (songName) {
+            // Create a new list item
+            const newItem = document.createElement('li');
+
+            // Create a text node with the song name
+            const textNode = document.createTextNode(songName);
+
+            // Create a delete link
+            const deleteLink = document.createElement('a');
+            deleteLink.href = '#';
+            deleteLink.textContent = 'Delete';
+            deleteLink.style.marginLeft = '10px';
+            deleteLink.style.color = 'red';
+
+            // Append text node and delete link to the list item
+            newItem.appendChild(textNode);
+            newItem.appendChild(deleteLink);
+
+            // Add the new item to the playlist
+            playlist.appendChild(newItem);
+
+            // Clear the input field
+            songTextInput.value = '';
+
+            // Add click event for delete link
+            deleteLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                playlist.removeChild(newItem); // Remove the list item from the playlist
+            });
+        } else {
+            // Optionally handle the case where the input is empty
+            alert('Please enter a song name.');
+        }
+    });
+};
+
+    </script>
+</head>
+<body>
+
+<form>
+    <input type="text" id="songTextInput" size="40" placeholder="Song name">
+    <input type="button" id="addButton" value="Add Song">
+</form>
+
+<ul id="playlist">
+</ul>
+
+</body>
+</html>

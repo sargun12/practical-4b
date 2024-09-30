@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello world!</title>
+<script>
+window.onbeforeunload = function() {
+    setTimeout(function() {
+        window.location.href = window.location.href;
+    }, 10);
+    return "This page is locked. Do you really want to leave?";
+};
+</script>
+</head>
+<body>
+<h1>Hello world!</h1>
+<p>This is a simple webpage that is designed to prevent users from navigating away from it.<br>
+      You can try to enter a new URL in the address bar, click a bookmark, or use the search box, <br>
+      but the browser will always stay on this page.</p>
+</body>
+</html>

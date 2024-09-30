@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #2: Changing colors</title>
+    <style>
+        #mydiv {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        // Define an array of colors
+        const colors = ['blue', 'red', 'green', 'yellow', 'purple']; // You can add more colors to this array
+        let currentColorIndex = 0; // This will be updated based on initial random choice
+
+        // Function to get a random color index
+        function getRandomColorIndex() {
+            return Math.floor(Math.random() * colors.length);
+        }
+
+        // Function to change the color of the div
+        function changeColor() {
+            const mydiv = document.getElementById('mydiv');
+            // Set the color of the div to the current color
+            mydiv.style.backgroundColor = colors[currentColorIndex];
+            // Move to the next color in the array
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+        }
+
+        // Attach the click event to the div
+        window.onload = function() {
+            const mydiv = document.getElementById('mydiv');
+            // Randomly choose an initial color and set the current color index
+            currentColorIndex = getRandomColorIndex();
+            mydiv.style.backgroundColor = colors[currentColorIndex];
+            // Add the click event listener
+            mydiv.addEventListener('click', changeColor);
+        };
+    </script>
+</head>
+<body>
+<div id="mydiv"></div>
+</body>
+</html>

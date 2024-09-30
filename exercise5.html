@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #5: Input check</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        .err {
+            color: red;
+            font-size: 0.7em;
+        }
+
+        #submitBtn {
+            display: none; /* Hide the submit button by default */
+        }
+    </style>
+    <script>
+        // Function to validate the form
+        function validateForm() {
+            const password1 = document.getElementById('password1').value;
+            const password2 = document.getElementById('password2').value;
+            const pw1Check = document.getElementById('pw1_check');
+            const pw2Check = document.getElementById('pw2_check');
+            let isValid = true;
+
+            // Reset error messages
+            pw1Check.textContent = '';
+            pw2Check.textContent = '';
+
+            // Validate the length of password1
+            if (password1.length < 6) {
+                pw1Check.textContent = 'Password must be at least 6 characters long.';
+                isValid = false;
+            }
+
+            // Validate the length of password2
+            if (password2.length < 6) {
+                pw2Check.textContent = 'Password must be at least 6 characters long.';
+                isValid = false;
+            } else if (password1 !== password2) {
+                // Check if passwords match
+                pw2Check.textContent = 'Passwords do not match.';
+                isValid = false;
+            }
+
+            // Show or hide the submit button based on validity
+            document.getElementById('submitBtn').style.display = (isValid && password1.length >= 6 && password2.length >= 6 && password1 === password2) ? 'inline' : 'none';
+
+            // Return false to prevent form submission if there are errors
+            return isValid;
+        }
+
+        // Attach the validateForm function to the form's input events and submit event
+        window.onload = function() {
+            const form = document.forms['pw'];
+            form.addEventListener('input', validateForm); // Validate on input change
+            form.addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault(); // Prevent form submission if invalid
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+
+<form name="pw">
+    <table>
+        <tr>
+            <td>Password (min 6 characters):</td>
+            <td><input type="password" name="password1" id="password1" size="10" placeholder="Password"></td>
+            <td>
+                <div id="pw1_check" class="err"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Repeat password:</td>
+            <td><input type="password" name="password2" id="password2" size="10" placeholder="Password"></td>
+            <td>
+                <div id="pw2_check" class="err"></div>
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Submit" id="submitBtn"/>
+</form>
+
+</body>
+</html>

